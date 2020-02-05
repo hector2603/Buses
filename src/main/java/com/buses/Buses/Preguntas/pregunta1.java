@@ -1,4 +1,4 @@
-package Preguntas;
+package com.buses.Buses.Preguntas;
 
 import java.util.ArrayList;
 import java.util.Arrays;

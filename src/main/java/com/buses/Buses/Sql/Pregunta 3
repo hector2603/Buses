@@ -1,0 +1,23 @@
+
+SELECT buses.* 
+	FROM bus as buses 
+		INNER JOIN concessionaire as conce 
+			ON buses.concessionaireId = conce.Id 
+	WHERE conce.name = 'Concessionaire 1' 
+
+
+SELECT devi.* 
+	FROM bus as buses 
+		INNER JOIN device as devi 
+			ON devi.busId = buses.Id 
+		INNER JOIN devicetype as deviType 
+			ON devi.deviceTypeId = deviType.id 
+	WHERE deviType.name = 'NVR' AND buses.type = 'Bi-articulado'
+
+
+
+SELECT devi.id , devi.status , buses.motor , count(devi.id) 
+	FROM bus as buses 
+		INNER JOIN device as devi 
+			ON devi.busId = buses.Id 
+	GROUP BY devi.id , devi.status , buses.motor

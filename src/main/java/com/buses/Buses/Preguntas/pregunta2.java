@@ -1,4 +1,4 @@
-package Preguntas;
+package com.buses.Buses.Preguntas;
 
 import java.util.ArrayList;
 
@@ -21,7 +21,7 @@ public class pregunta2 {
 	
 	
 	/**
-	 * Funcion encargada de realizar el conteo y la creación de los arreglos para la información del conteo
+	 * Funcion encargada de realizar el conteo y la creaciï¿½n de los arreglos para la informaciï¿½n del conteo
 	 * */
 	private void contar() {
 		for (int i = 0; i < this.Cadena.length(); i++) {
@@ -38,7 +38,7 @@ public class pregunta2 {
 	}
 	
 	/**
-	 * función que realiza la transformación de los arreglos al formato de salida que se requiere
+	 * funciï¿½n que realiza la transformaciï¿½n de los arreglos al formato de salida que se requiere
 	 * */
 	private void mostrarResultados() {
 		System.out.print("{");
