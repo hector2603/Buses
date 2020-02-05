@@ -13,41 +13,43 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.stereotype.Repository;
 
-import com.buses.Buses.entity.Concessionaire;
+import com.buses.Buses.entity.Device;
 
 
 @Repository
-public class ConcessionaireDaoImpl implements ConcessionaireDao{
+public class DeviceDaoImpl implements DeviceDao{
 
 	
 	@PersistenceContext
 	private EntityManager entityManager;
 	
 	@Override
-	public List<Concessionaire> findAll() {
+	public List<Device> findAll() {
 		Session currentSession = entityManager.unwrap(Session.class);
 
-		Query<Concessionaire> theQuery = currentSession.createQuery("from Concessionaire", Concessionaire.class);
+		Query<Device> theQuery = currentSession.createQuery("from Device", Device.class);
 		
-		List<Concessionaire> concessionaires = theQuery.getResultList();
+		List<Device> device = theQuery.getResultList();
 		
-		return concessionaires;
+		return device;
 
 	}
 
 	@Override
-	public Concessionaire findById(int id) {
+	public Device findById(int id) {
 		Session currentSession = entityManager.unwrap(Session.class);
 
-		Concessionaire bus = currentSession.get(Concessionaire.class, id);
-		return bus;
+		Device device = currentSession.get(Device.class, id);
+		return device;
 	}
 
+	@Transactional
+	@Modifying
 	@Override
-	public void save(Concessionaire buses) {
+	public void save(Device device) {
 		Session currentSession = entityManager.unwrap(Session.class);
 		
-		currentSession.saveOrUpdate(buses);	
+		currentSession.saveOrUpdate(device);	
 		
 	}
 
@@ -57,9 +59,9 @@ public class ConcessionaireDaoImpl implements ConcessionaireDao{
 	public void deleteById(int id) {
 		Session currentSession = entityManager.unwrap(Session.class);
 
-		Query<Concessionaire> theQuery = currentSession.createQuery("delete from Concessionaire where id=:idConcessionaire");
+		Query<Device> theQuery = currentSession.createQuery("delete from Device where id=:idDevice");
 		
-		theQuery.setParameter("idConcessionaire", id);
+		theQuery.setParameter("idDevice", id);
 		theQuery.executeUpdate();
 		
 	}

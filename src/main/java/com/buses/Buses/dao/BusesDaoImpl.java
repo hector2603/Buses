@@ -5,10 +5,12 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.PersistenceUnit;
+import javax.transaction.Transactional;
 
 import org.hibernate.Session;
 import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.stereotype.Repository;
 
 import com.buses.Buses.entity.Buses;
@@ -41,6 +43,8 @@ public class BusesDaoImpl implements BusesDao{
 		return bus;
 	}
 
+	@Transactional
+	@Modifying
 	@Override
 	public void save(Buses buses) {
 		Session currentSession = entityManager.unwrap(Session.class);
@@ -49,6 +53,8 @@ public class BusesDaoImpl implements BusesDao{
 		
 	}
 
+	@Transactional
+	@Modifying
 	@Override
 	public void deleteById(int id) {
 		Session currentSession = entityManager.unwrap(Session.class);
