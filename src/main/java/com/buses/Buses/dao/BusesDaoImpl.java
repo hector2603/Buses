@@ -14,6 +14,7 @@ import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.stereotype.Repository;
 
 import com.buses.Buses.entity.Buses;
+import com.buses.Buses.entity.Device;
 
 
 @Repository
@@ -29,9 +30,9 @@ public class BusesDaoImpl implements BusesDao{
 
 		Query<Buses> theQuery = currentSession.createQuery("from Buses", Buses.class);
 		
-		List<Buses> users = theQuery.getResultList();
+		List<Buses> buses = theQuery.getResultList();
 		
-		return users;
+		return buses;
 
 	}
 
@@ -64,6 +65,18 @@ public class BusesDaoImpl implements BusesDao{
 		theQuery.setParameter("idBus", id);
 		theQuery.executeUpdate();
 		
+	}
+
+	@Override
+	public List<Device> findDevices(int id) {
+		Session currentSession = entityManager.unwrap(Session.class);
+
+		Query<Device> theQuery = currentSession.createQuery("from Device WHERE busid=:idBus", Device.class);
+		theQuery.setParameter("idBus", id);
+		
+		List<Device> devices = theQuery.getResultList();
+		
+		return devices;
 	}
 
 	

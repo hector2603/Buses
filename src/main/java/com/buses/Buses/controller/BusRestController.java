@@ -16,9 +16,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.buses.Buses.entity.Buses;
+import com.buses.Buses.entity.Device;
 import com.buses.Buses.service.BusService;
 
-//Indiciamos que es un controlador rest
+//Indicamos que es un controlador rest
 @RestController
 @RequestMapping("/api") //esta sera la raiz de la url, es decir http://127.0.0.1:8080/api/
 public class BusRestController {
@@ -35,10 +36,10 @@ public class BusRestController {
 		return busService.findAll();
 	}
 	
-	/*Este método se hará cuando por una petición GET (como indica la anotación) se llame a la url + el id de un usuario
+	/*Este método se hará cuando por una petición GET (como indica la anotación) se llame a la url + el id de un Bus
 	http://127.0.0.1:8080/api/buses/1*/
 	@GetMapping("/buses/{busId}")
-	public Buses getUser(@PathVariable int busId){
+	public Buses getBus(@PathVariable int busId){
 		
 		Buses bus = busService.findById(busId);
 		
@@ -52,7 +53,7 @@ public class BusRestController {
 	/*Este método se hará cuando por una petición POST (como indica la anotación) se llame a la url
 	http://127.0.0.1:8080/api/buses/  */
 	@PostMapping("/buses")
-	public Buses addUser(@RequestBody Buses bus) {
+	public Buses addBus(@RequestBody Buses bus) {
 		bus.setId(0);
 		
 		//Este metodo guardará al usuario enviado
@@ -64,19 +65,22 @@ public class BusRestController {
 	/*Este método se hará cuando por una petición PUT (como indica la anotación) se llame a la url
 	http://127.0.0.1:8080/api/buses/  */
 	@PutMapping("/buses")
-	public Buses updateUser(@RequestBody Buses bus) {
+	public Buses updateBus(@RequestBody Buses bus) {
 		
 		busService.save(bus);
 		
-		//este metodo actualizará al usuario enviado
+		//este metodo actualizará el Bus enviado
 		
 		return bus;
 	}
 	
-	/*Este método se hará cuando por una petición DELETE (como indica la anotación) se llame a la url + id del bus
-	http://127.0.0.1:8080/api/users/1  */
+	/**
+	 * Este método se hará cuando por una petición DELETE (como indica la anotación) se llame a la url + id del bus 
+	 * http://127.0.0.1:8080/api/users/1 
+	 * @param busId entero con el identificador del bus 
+	 * */
 	@DeleteMapping("buses/{busId}")
-	public String deteteUser(@PathVariable int busId) {
+	public String deteteBus(@PathVariable int busId) {
 		
 		Buses bus = busService.findById(busId);
 		
@@ -90,4 +94,19 @@ public class BusRestController {
 		return "Deleted user id - "+busId;
 	}
 	
+	/**
+	 * Este método se ejecutará cuando se llame la ruta jerarquica para cnsultar los dispositivos especificos de un bus
+	 * http://127.0.0.1:8080/api/busDevice/1 
+	 * @param busId entero que identifica el bus
+	 * */
+	 @GetMapping("/busDevice/{busId}")
+	 public List<Device> getBusDevice(@PathVariable int busId) {
+		 List<Device> devices = busService.findDevices(busId);
+		
+		if(devices == null) {
+			throw new RuntimeException("Bus id not found -"+busId);
+		}
+		//retornará al usuario con id pasado en la url
+		return devices;
+	 }
 }

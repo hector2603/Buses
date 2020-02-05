@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.buses.Buses.entity.Buses;
+import com.buses.Buses.entity.Device;
 
 public interface BusesDao  {
 
@@ -15,5 +16,7 @@ public interface BusesDao  {
 	public void save(Buses buses);
 	
 	public void deleteById(int id);
+
+	public List<Device> findDevices(int id);
 	
 }

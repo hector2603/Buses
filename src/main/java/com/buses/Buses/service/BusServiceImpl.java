@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.buses.Buses.dao.BusesDao;
 import com.buses.Buses.entity.Buses;
+import com.buses.Buses.entity.Device;
 
 @Service
 public class BusServiceImpl implements BusService {
@@ -34,6 +35,12 @@ public class BusServiceImpl implements BusService {
 	@Override
 	public void deleteById(int id) {
 		busesDao.deleteById(id);
+	}
+
+	@Override
+	public List<Device> findDevices(int id) {
+		List<Device> devices = busesDao.findDevices(id);
+		return devices;
 	}
 
 	
