@@ -7,6 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 
@@ -21,22 +23,24 @@ public class Device {
 	
 	@Column(name="ip")
 	private String ip;
-
-	@Column(name="devicetypeid")
-	private int devideTypeId;
 	
-	@Column(name="busid")
-	private int busId;
+    @JoinColumn(name = "devicetypeid", referencedColumnName = "id")
+    @ManyToOne
+	private DeviceType devidetypeid;
+	
+    @JoinColumn(name = "busid", referencedColumnName = "id")
+    @ManyToOne
+	private Buses busId;
 	
 	@Column(name="status")
 	private String status;
 
 	public Device() {}
 	
-	public Device(int id, String ip, int devicetypeid , int busid, String status) {
+	public Device(int id, String ip, DeviceType devicetypeid , Buses busid, String status) {
 		this.id = id;
 		this.ip = ip;
-		this.devideTypeId = devicetypeid;
+		this.devidetypeid = devicetypeid;
 		this.busId = busid;
 		this.status = status;
 	}
@@ -57,19 +61,19 @@ public class Device {
 		this.ip = ip;
 	}
 	
-	public int getDevideTypeId() {
-		return devideTypeId;
+	public DeviceType getDevideTypeId() {
+		return devidetypeid;
 	}
 
-	public void setDevideTypeId(int devideTypeId) {
-		this.devideTypeId = devideTypeId;
+	public void setDevideTypeId(DeviceType devideTypeId) {
+		this.devidetypeid = devideTypeId;
 	}
 
-	public int getBusId() {
+	public Buses getBusId() {
 		return busId;
 	}
 
-	public void setBusId(int busId) {
+	public void setBusId(Buses busId) {
 		this.busId = busId;
 	}
 
