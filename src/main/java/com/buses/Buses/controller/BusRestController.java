@@ -28,16 +28,22 @@ public class BusRestController {
 	@Autowired
 	private BusService busService;
 
-	/*Este método se hará cuando por una petición GET (como indica la anotación) se llame a la url 
-	http://127.0.0.1:8080/api/buses*/
+	/**
+	 * Este método se hará cuando por una petición GET (como indica la anotación) se llame a la url  http://127.0.0.1:8080/api/buses
+	 * 
+	 * */
 	@GetMapping("/buses")
 	public List<Buses> findAll(){
 		//retornará todos los usuarios
 		return busService.findAll();
 	}
 	
-	/*Este método se hará cuando por una petición GET (como indica la anotación) se llame a la url + el id de un Bus
-	http://127.0.0.1:8080/api/buses/1*/
+	/**
+	 * Este método se hará cuando por una petición GET (como indica la anotación) se llame a la url + el id de un Bus http://127.0.0.1:8080/api/buses/1
+	 * @param busid identificados del bus el cual se está buscando
+	 * 
+	 * */
+	
 	@GetMapping("/buses/{busId}")
 	public Buses getBus(@PathVariable int busId){
 		
@@ -50,8 +56,10 @@ public class BusRestController {
 		return bus;
 	}
 	
-	/*Este método se hará cuando por una petición POST (como indica la anotación) se llame a la url
-	http://127.0.0.1:8080/api/buses/  */
+	/**Este método se hará cuando por una petición POST (como indica la anotación) se llame a la url 
+	 * http://127.0.0.1:8080/api/buses/  
+	 * @params bus bus el cual se va a agregar 
+	 * */
 	@PostMapping("/buses")
 	public Buses addBus(@RequestBody Buses bus) {
 		bus.setId(0);
@@ -62,8 +70,10 @@ public class BusRestController {
 		return bus;
 		
 	}
-	/*Este método se hará cuando por una petición PUT (como indica la anotación) se llame a la url
-	http://127.0.0.1:8080/api/buses/  */
+	/**
+	 * Este método se hará cuando por una petición PUT (como indica la anotación) se llame a la url http://127.0.0.1:8080/api/buses/
+	 * @params bus bus el cual se va a actualizar  
+	*/
 	@PutMapping("/buses")
 	public Buses updateBus(@RequestBody Buses bus) {
 		

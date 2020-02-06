@@ -27,16 +27,21 @@ public class DeviceRestController {
 	@Autowired
 	private DeviceService deviceService;
 
-	/*Este método se hará cuando por una petición GET (como indica la anotación) se llame a la url 
-	http://127.0.0.1:8080/api/device*/
+	/**
+	 * Este método se hará cuando por una petición GET (como indica la anotación) se llame a la url http://127.0.0.1:8080/api/device
+	 * 
+	*/
 	@GetMapping("/device")
 	public List<Device> findAll(){
 		//retornará todos los dispositivos
 		return deviceService.findAll();
 	}
 	
-	/*Este método se hará cuando por una petición GET (como indica la anotación) se llame a la url + el id de un usuario
-	http://127.0.0.1:8080/api/device/1*/
+	/**
+	 * Este método se hará cuando por una petición GET (como indica la anotación) se llame a la url + el id de un usuario
+	 * http://127.0.0.1:8080/api/device/1
+	 * 
+	 * */
 	@GetMapping("/device/{deviceId}")
 	public Device getDevice(@PathVariable int deviceId){
 		
@@ -49,8 +54,9 @@ public class DeviceRestController {
 		return device;
 	}
 	
-	/*Este método se hará cuando por una petición POST (como indica la anotación) se llame a la url
-	http://127.0.0.1:8080/api/device/  */
+	/**
+	 * Este método se hará cuando por una petición POST (como indica la anotación) se llame a la url http://127.0.0.1:8080/api/device/  
+	*/
 	@PostMapping("/device")
 	public Device addDevice(@RequestBody Device device) {
 		device.setId(0);
@@ -61,8 +67,10 @@ public class DeviceRestController {
 		return device;
 		
 	}
-	/*Este método se hará cuando por una petición PUT (como indica la anotación) se llame a la url
-	http://127.0.0.1:8080/api/device/  */
+	/** 
+	 * Este método se hará cuando por una petición PUT (como indica la anotación) se llame a la url http://127.0.0.1:8080/api/device/
+	 *   
+	*/
 	@PutMapping("/device")
 	public Device updateDevice(@RequestBody Device device) {
 		
@@ -73,8 +81,11 @@ public class DeviceRestController {
 		return device;
 	}
 	
-	/*Este método se hará cuando por una petición DELETE (como indica la anotación) se llame a la url + id del bus
-	http://127.0.0.1:8080/api/device/1  */
+	/** 
+	 * Este método se hará cuando por una petición DELETE (como indica la anotación) se llame a la url + id del bus
+	http://127.0.0.1:8080/api/device/1  
+	
+	*/
 	@DeleteMapping("device/{deviceId}")
 	public String deteteDevice(@PathVariable int deviceId) {
 		
@@ -87,7 +98,7 @@ public class DeviceRestController {
 		deviceService.deleteById(deviceId);
 		
 		//Esto método, recibira el id de un usuario por URL y se borrará de la bd.
-		return "Deleted user id - "+deviceId;
+		return "Deleted Device id - "+deviceId;
 	}
 	
 }

@@ -27,16 +27,20 @@ public class DeviceTypeRestController {
 	@Autowired
 	private DeviceTypeService deviceService;
 
-	/*Este método se hará cuando por una petición GET (como indica la anotación) se llame a la url 
-	http://127.0.0.1:8080/api/deviceType*/
+	/**
+	 * Este método se hará cuando por una petición GET (como indica la anotación) se llame a la url 
+	http://127.0.0.1:8080/api/deviceType
+	*/
 	@GetMapping("/deviceType")
 	public List<DeviceType> findAll(){
 		//retornará todos los dispositivos
 		return deviceService.findAll();
 	}
 	
-	/*Este método se hará cuando por una petición GET (como indica la anotación) se llame a la url + el id de un dispositivo
-	http://127.0.0.1:8080/api/deviceType/1*/
+	/**
+	 * Este método se hará cuando por una petición GET (como indica la anotación) se llame a la url + el id de un dispositivo
+	http://127.0.0.1:8080/api/deviceType/1
+	*/
 	@GetMapping("/deviceType/{deviceId}")
 	public DeviceType getDevice(@PathVariable int deviceId){
 		
@@ -49,8 +53,10 @@ public class DeviceTypeRestController {
 		return device;
 	}
 	
-	/*Este método se hará cuando por una petición POST (como indica la anotación) se llame a la url
-	http://127.0.0.1:8080/api/deviceType/  */
+	/** 
+	 * Este método se hará cuando por una petición POST (como indica la anotación) se llame a la url
+	http://127.0.0.1:8080/api/deviceType/  
+	*/
 	@PostMapping("/deviceType")
 	public DeviceType addDevice(@RequestBody DeviceType device) {
 		device.setId(0);
@@ -61,8 +67,10 @@ public class DeviceTypeRestController {
 		return device;
 		
 	}
-	/*Este método se hará cuando por una petición PUT (como indica la anotación) se llame a la url
-	http://127.0.0.1:8080/api/deviceType/  */
+	/**
+	 * Este método se hará cuando por una petición PUT (como indica la anotación) se llame a la url
+	http://127.0.0.1:8080/api/deviceType/  
+	*/
 	@PutMapping("/deviceType")
 	public DeviceType updateDevice(@RequestBody DeviceType device) {
 		
@@ -73,7 +81,8 @@ public class DeviceTypeRestController {
 		return device;
 	}
 	
-	/*Este método se hará cuando por una petición DELETE (como indica la anotación) se llame a la url + id del bus
+	/**
+	 * Este método se hará cuando por una petición DELETE (como indica la anotación) se llame a la url + id del dispositivo
 	http://127.0.0.1:8080/api/device/1  */
 	@DeleteMapping("deviceType/{deviceId}")
 	public String deteteDevice(@PathVariable int deviceId) {

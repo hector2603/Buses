@@ -27,16 +27,19 @@ public class ConcessionaireRestController {
 	@Autowired
 	private ConcessionaireService concessionaireService;
 
-	/*Este método se hará cuando por una petición GET (como indica la anotación) se llame a la url 
-	http://127.0.0.1:8080/api/buses*/
+	/**Este método se hará cuando por una petición GET (como indica la anotación) se llame a la url 
+	http://127.0.0.1:8080/api/buses
+	*/
 	@GetMapping("/concessionaire")
 	public List<Concessionaire> findAll(){
 		//retornará todos los usuarios
 		return concessionaireService.findAll();
 	}
 	
-	/*Este método se hará cuando por una petición GET (como indica la anotación) se llame a la url + el id de un usuario
-	http://127.0.0.1:8080/api/buses/1*/
+	/**Este método se hará cuando por una petición GET (como indica la anotación) se llame a la url + el id de un usuario http://127.0.0.1:8080/api/buses/1
+	 * @param concessionaireId identificador del concesionario
+	 * 
+	 * */
 	@GetMapping("/concessionaire/{concessionaireId}")
 	public Concessionaire getConcessionaire(@PathVariable int concessionaireId){
 		
@@ -49,8 +52,10 @@ public class ConcessionaireRestController {
 		return concessionaire;
 	}
 	
-	/*Este método se hará cuando por una petición POST (como indica la anotación) se llame a la url
-	http://127.0.0.1:8080/api/buses/  */
+	/** Este método se hará cuando por una petición POST (como indica la anotación) se llame a la url http://127.0.0.1:8080/api/buses/
+	 * 
+	 *   @param concessionaire concesionario el cual se va a agregar
+	*/
 	@PostMapping("/concessionaire")
 	public Concessionaire addConcessionaire(@RequestBody Concessionaire concessionaire) {
 		concessionaire.setId(0);
@@ -61,8 +66,10 @@ public class ConcessionaireRestController {
 		return concessionaire;
 		
 	}
-	/*Este método se hará cuando por una petición PUT (como indica la anotación) se llame a la url
-	http://127.0.0.1:8080/api/buses/  */
+	/**Este método se hará cuando por una petición PUT (como indica la anotación) se llame a la url http://127.0.0.1:8080/api/buses/
+	 * 
+	 *   @param  concessionaire concesionario el cual se va a agregar
+	*/
 	@PutMapping("/concessionaire")
 	public Concessionaire updateConcessionaire(@RequestBody Concessionaire concessionaire) {
 		
@@ -73,8 +80,11 @@ public class ConcessionaireRestController {
 		return concessionaire;
 	}
 	
-	/*Este método se hará cuando por una petición DELETE (como indica la anotación) se llame a la url + id del bus
-	http://127.0.0.1:8080/api/concessionaire/1  */
+	/**Este método se hará cuando por una petición DELETE (como indica la anotación) se llame a la url + id del bus http://127.0.0.1:8080/api/concessionaire/1
+	 * 
+	 *  @param concessionaire concesionario el cual se va a agregar
+	 *   
+	*/
 	@DeleteMapping("concessionaire/{concessionaireId}")
 	public String deteteConcessionaire(@PathVariable int concessionaireId) {
 		
@@ -87,7 +97,7 @@ public class ConcessionaireRestController {
 		concessionaireService.deleteById(concessionaireId);
 		
 		//Esto método, recibira el id de un usuario por URL y se borrará de la bd.
-		return "Deleted user id - "+concessionaireId;
+		return "Deleted Concessionaire id - "+concessionaireId;
 	}
 	
 }
